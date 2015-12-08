@@ -12,7 +12,6 @@ f = open(infile, 'rb')
 reader = csv.reader(f, delimiter=",", quotechar='|', quoting=csv.QUOTE_MINIMAL)
 d = defaultdict(int)
 
-
 stopwords = Set([])
 newf = open("stopwords.txt", 'rb')
 for line in newf:
@@ -24,7 +23,7 @@ for row in reader:
 	for w in row[2].split(" "):
 		d[w] += 1
 
-infile = "./../parsed/week1parsed.csv"
+infile = "./uncensored_sample.csv"
 outfile = "./diff_word_frequencies.csv"
 outfile2 = "./uncensored_word_frequencies.csv"
 outfile3 = "./censored_word_frequencies.csv"
@@ -40,6 +39,8 @@ d2 = defaultdict(int)
 
 print "reading random parsed"
 for row in reader:
+	if len(row)>3:
+		print "greater than 3"
 	if row[1] == "0":
 		for w in row[2].split(" "):
 			d2[w] += 1
